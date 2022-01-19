@@ -26,6 +26,10 @@ wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/hostc && chmo
 wget -q -N https://raw.githubusercontent.com/drampil/toy-box/main/identity.sh && chmod +x identity.sh;
 echo
 
+# Install Test Keys
+echo '90cb4aac-e7cf-4ce6-a646-8fd01074f9c5' > urlscankey.txt
+echo '77bf2c05f05e318259df7ef3c1a557b802c41a8bb66b30f01eb2fd395099cb0c' > vtkey.txt
+
 # List the scripts downloaded.
 echo "Installed or updated the following:"
 echo
