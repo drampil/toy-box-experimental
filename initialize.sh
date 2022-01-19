@@ -24,6 +24,7 @@ wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/imgur && chmo
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/tessbeta && chmod +x tessbeta;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/hostc && chmod +x hostc;
 wget -q -N https://raw.githubusercontent.com/drampil/toy-box/main/identity.sh && chmod +x identity.sh;
+wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/template
 echo
 
 # Install Test Keys
