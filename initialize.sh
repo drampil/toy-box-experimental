@@ -19,7 +19,7 @@ wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/warpath && ch
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/aris && chmod +x aris;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/tracer && chmod +x tracer;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/imgur && chmod +x imgur;
-wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/tess && chmod +x tess;
+wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/tessbeta && chmod +x tessbeta;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/hostc && chmod +x hostc;
 wget -q -N https://raw.githubusercontent.com/drampil/toy-box/main/identity.sh && chmod +x identity.sh;
 echo
@@ -45,3 +45,10 @@ sudo yum install whois -y
 echo 'bash identity.sh' >> .bashrc
 source .bashrc
 
+# Check file integrity
+FILE=megac
+if [ -f "$FILE" ]; then
+    echo "$FILE has been installed successfully."
+else 
+    echo "$FILE has not been installed successfully."
+fi
