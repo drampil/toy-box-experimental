@@ -38,13 +38,20 @@ echo "6. Aris-C"
 echo "7. Tracer"
 echo "8. Imgr-C" 
 echo "9. Tesseract as a Command Line Tool"
+echo
 
 # Install Firewalld and Whois
 sudo yum install firewalld -y
 sudo yum install whois -y
+echo
 
 # Install new .bashrc parameters
-echo 'bash identity.sh' >> .bashrc
+if grep -q bash identity.sh ".bashrc"; then
+  echo "Identity script already loaded"
+else
+        "echo 'bash identity.sh' >> .bashrc"
+fi
+
 
 # Check file integrity
 echo "Checking file integrity."
