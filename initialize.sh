@@ -10,6 +10,8 @@ echo -e "   ██║   ██║   ██║ ╚████╔╝     ██�
 echo -e "   ██║   ██║   ██║  ╚██╔╝      ██╔══██╗██║   ██║ ██╔██╗ "
 echo -e "   ██║   ╚██████╔╝   ██║       ██████╔╝╚██████╔╝██╔╝ ██╗"
 echo -e "   ╚═╝    ╚═════╝    ╚═╝       ╚═════╝  ╚═════╝ ╚═╝  ╚═╝"
+echo
+curl https://raw.githubusercontent.com/drampil/toy-box/main/28.txt
                                                        
 # Initialize the download the script series and make them executables.
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/megac && chmod +x megac;
