@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Instructing and header text.
-echo "Initiating Toy - Box update..."
+echo "Initiating Toy - Box update... Super user powers required ahead."
 sleep 1
 echo
 echo -e "████████╗ ██████╗ ██╗   ██╗    ██████╗  ██████╗ ██╗  ██╗"
@@ -46,9 +46,69 @@ echo 'bash identity.sh' >> .bashrc
 source .bashrc
 
 # Check file integrity
+
 FILE=megac
 if [ -f "$FILE" ]; then
     echo "$FILE has been installed successfully."
 else 
     echo "$FILE has not been installed successfully."
 fi
+
+FILE=javelin
+if [ -f "$FILE" ]; then
+    echo "$FILE has been installed successfully."
+else 
+    echo "$FILE has not been installed successfully."
+fi
+
+FILE=ghost
+if [ -f "$FILE" ]; then
+    echo "$FILE has been installed successfully."
+else 
+    echo "$FILE has not been installed successfully."
+fi
+
+FILE=warpath
+if [ -f "$FILE" ]; then
+    echo "$FILE has been installed successfully."
+else 
+    echo "$FILE has not been installed successfully."
+fi
+
+FILE=aris
+if [ -f "$FILE" ]; then
+    echo "$FILE has been installed successfully."
+else 
+    echo "$FILE has not been installed successfully."
+fi
+
+FILE=tracer
+if [ -f "$FILE" ]; then
+    echo "$FILE has been installed successfully."
+else 
+    echo "$FILE has not been installed successfully."
+fi
+
+FILE=imgur
+if [ -f "$FILE" ]; then
+    echo "$FILE has been installed successfully."
+else 
+    echo "$FILE has not been installed successfully."
+fi
+
+FILE=tessbeta
+if [ -f "$FILE" ]; then
+    echo "$FILE has been installed successfully."
+else 
+    echo "$FILE has not been installed successfully."
+fi
+
+FILE=hostc
+if [ -f "$FILE" ]; then
+    echo "$FILE has been installed successfully."
+else 
+    echo "$FILE has not been installed successfully."
+fi
+
+# Cleanup
+mv tessbeta tess
