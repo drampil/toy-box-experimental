@@ -46,6 +46,8 @@ echo 'bash identity.sh' >> .bashrc
 source .bashrc
 
 # Check file integrity
+echo "Checking file integrity."
+sleep 1
 
 FILE=megac
 if [ -f "$FILE" ]; then
