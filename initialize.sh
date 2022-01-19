@@ -45,6 +45,7 @@ echo "9. Tesseract as a Command Line Tool"
 echo
 
 # Install Firewalld and Whois
+echo "Installing systools and changing permissions..."
 sudo yum install firewalld -y
 sudo yum install whois -y
 echo
