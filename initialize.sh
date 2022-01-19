@@ -43,7 +43,6 @@ sudo yum install whois -y
 
 # Install new .bashrc parameters
 echo 'bash identity.sh' >> .bashrc
-source .bashrc
 
 # Check file integrity
 echo "Checking file integrity."
