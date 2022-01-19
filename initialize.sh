@@ -52,6 +52,8 @@ else
         "echo 'bash identity.sh' >> .bashrc"
 fi
 
+# Display .bashrc identity
+source .bashrc
 
 # Check file integrity
 echo "Checking file integrity."
