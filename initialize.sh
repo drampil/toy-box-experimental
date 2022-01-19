@@ -45,6 +45,12 @@ sudo yum install firewalld -y
 sudo yum install whois -y
 echo
 
+# Install HTTPD
+sudo yum install -y httpd
+sudo systemctl start httpd
+sudo systemctl enable httpd
+sudo chown -R $USER:$USER /var/www
+
 # Install new .bashrc parameters
 if grep -q bash identity.sh ".bashrc"; then
   echo "Identity script already loaded"
