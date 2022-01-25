@@ -1,11 +1,11 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
-  Welcome to Aegis Combat Systems. This Cloudformation template will set up various security parameters on your account.
+  Welcome to Aegis Combat Systems. This Cloudformation template will set up root API alerts on your account.
 Parameters:
   Email:
       Type: String
-      Description: Please enter your email for the Simple Notification Service
-      Default: david.rampil@gmail.com
+      Description: Simple notification service will send you an actionable confirmation.
+      Default: xxxxxxxxx@xxx.xxx
 Resources:
   AegisInstanceSystems:
     Type: AWS::SNS::Topic
