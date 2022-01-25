@@ -3,63 +3,63 @@ Description: >-
   Welcome to Aegis Combat Systems. This Cloudformation template will set up various security parameters on your account.
 Parameters:
   Email:
-    Type: String
-    Description: Please enter your email for the Simple Notification Service
-    Default: email
+      Type: String
+        Description: Please enter your email for the Simple Notification Service
+        Default: email
 Resources:
-	Aegis-Combat-System: 
-	 Type: AWS::Events::Rule
- 	 Properties: 
-    Description: "user detection system"
-    EventPattern: 
-      detail-type: 
-        - "AWS Console Sign In via CloudTrail"
-    State: "ENABLED"
-    Targets: 
-      - 
-        Arn: 
-          Ref: "Aegis-Instance-Systems"
-        Id: "OpsTopic"
-			InputeTransformer:
-			InputPathMap:
-				"MFA":"$.detail.additionalEventData.MFAUsed"
-				"action":"$.detail.eventName"
-				"arn":"$.detail.userIdentity.arn"
-				"loginrate":"$.detail.responseElements.ConsoleLogin"
-				"mobile":"$.detail.additionalEventData.MobileVersion"
-				"region":"$.detail.awsRegion"
-				"sector":"$.detail.additionalEventData.LoginTo"
-				"sourceip":"$.detail.sourceIPAddress"
-				"time":"$.detail.eventTime"
-				"user":"$.detail.userIdentity.userName"
-				"userAgent":"$.detail.userAgent"
-			InputTemplate: |
-				"Aegis Secure Combat Systems has detected an sign in event." 
-				"User: <user> has attempted the API call: <action>" 
-				"Source IP: <sourceip>"
-				"User Agent Detected: <userAgent>" 
-				"ARN: <arn>"
-				"Region: <region>"
-				"Time(UTC): <time>"
-				"MFA status <MFA>" 
-				"Mobile Version: <mobile>"
-				"Sector: <sector>" 
-				"Status: <loginrate>."
-	Aegis-Topic-Policy:
- 	 Type: 'AWS::SNS::TopicPolicy'
- 	 Properties:
- 	   PolicyDocument:
-      Statement:
-        - Effect: Allow
-          Principal:
-            Service: events.amazonaws.com
-          Action: 'sns:Publish'
-          Resource: '*'
-    Topics:
-      - !Ref Aegis-Instance-Systems
-  	Aegis-Instance-Systems:
+  Aegis-Combat-System:
+      Type: AWS::Events::Rule
+        Properties:
+          Description: "user detection system"
+          EventPattern:
+            detail-type:
+              - "AWS Console Sign In via CloudTrail"
+              State: "ENABLED"
+              Targets:
+                -
+                  Arn:
+                    Ref: "Aegis-Instance-Systems"
+                    Id: "OpsTopic"
+                    InputeTransformer:
+                      InputPathMap:
+                        "MFA":"$.detail.additionalEventData.MFAUsed"
+                        "action":"$.detail.eventName"
+                        "arn":"$.detail.userIdentity.arn"
+                        "loginrate":"$.detail.responseElements.ConsoleLogin"
+                        "mobile":"$.detail.additionalEventData.MobileVersion"
+                        "region":"$.detail.awsRegion"
+                        "sector":"$.detail.additionalEventData.LoginTo"
+                        "sourceip":"$.detail.sourceIPAddress"
+                        "time":"$.detail.eventTime"
+                        "user":"$.detail.userIdentity.userName"
+                        "userAgent":"$.detail.userAgent"
+                      InputTemplate: |
+                        "Aegis Secure Combat Systems has detected an sign in event."
+                        "User: <user> has attempted the API call: <action>"
+                        "Source IP: <sourceip>"
+                        "User Agent Detected: <userAgent>"
+                        "ARN: <arn>"
+                        "Region: <region>"
+                        "Time(UTC): <time>"
+                        "MFA status <MFA>"
+                        "Mobile Version: <mobile>"
+                        "Sector: <sector>"
+                        "Status: <loginrate>."
+  Aegis-Topic-Policy:
+    Type: 'AWS::SNS::TopicPolicy'
+      Properties:
+        PolicyDocument:
+          Statement:
+            - Effect: Allow
+            Principal:
+              Service: events.amazonaws.com
+              Action: 'sns:Publish'
+              Resource: '*'
+              Topics:
+                - !Ref Aegis-Instance-Systems
+  Aegis-Instance-Systems:
     Type: AWS::SNS::Topic
     Properties:
       Subscription:
-      - Endpoint: !Ref Email
+        - Endpoint: !Ref Email
         Protocol: email
