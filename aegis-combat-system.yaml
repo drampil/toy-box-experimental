@@ -63,7 +63,7 @@ Resources:
               "ARN: <arn>"
               "Region: <region>"
               "Time(UTC): <time>"
-              "."
+              "-------------------------------"
               "Login Information if applicable"
               "MFA status <MFA>"
               "Mobile Version: <mobile>"
