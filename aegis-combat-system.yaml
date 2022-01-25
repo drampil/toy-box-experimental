@@ -2,49 +2,86 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: >-
   Welcome to Aegis Combat Systems. This Cloudformation template will set up various security parameters on your account.
 Parameters:
+  QueueName:
+      Type: String
+      Description: SQS Queue for debug
+      Default: DemoQueue
   Email:
       Type: String
       Description: Please enter your email for the Simple Notification Service
-      Default: email
+      Default: david.rampil@gmail.com
 Resources:
+  StandardQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Ref QueueName
   AegisCombatSystem:
-      Type: AWS::Events::Rule
-      Properties:
-        Description: "user detection system"
-        EventPattern:
-          detail-type:
-            - "AWS Console Sign In via CloudTrail"
-        State: "ENABLED"
-        Targets:
-          -
-            Arn:
-              Ref: "AegisInstanceSystems"
-            Id: "OpsTopic"
-            InputTransformer:
-              InputPathsMap:
-                MFA: "$.detail.additionalEventData.MFAUsed"
-                action: "$.detail.eventName"
-                arn: "$.detail.userIdentity.arn"
-                loginrate: "$.detail.responseElements.ConsoleLogin"
-                mobile: "$.detail.additionalEventData.MobileVersion"
-                region: "$.detail.awsRegion"
-                sector: "$.detail.additionalEventData.LoginTo"
-                sourceip: "$.detail.sourceIPAddress"
-                time: "$.detail.eventTime"
-                user: "$.detail.userIdentity.userName"
-                userAgent: "$.detail.userAgent"
-              InputTemplate: |
-                "Aegis Secure Combat Systems has detected an sign in event."
-                "User: <user> has attempted the API call: <action>"
-                "Source IP: <sourceip>"
-                "User Agent Detected: <userAgent>"
-                "ARN: <arn>"
-                "Region: <region>"
-                "Time(UTC): <time>"
-                "MFA status <MFA>"
-                "Mobile Version: <mobile>"
-                "Sector: <sector>"
-                "Status: <loginrate>."
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "user detection system"
+      EventPattern:
+        detail-type:
+          - "AWS Console Sign In via CloudTrail"
+        source:
+          - "aws.signin"
+      State: "ENABLED"
+      Targets:
+        -
+          Arn:
+            Ref: "AegisInstanceSystems"
+          Id: "OpsTopic"
+          InputTransformer:
+            InputPathsMap:
+              MFA: "$.detail.additionalEventData.MFAUsed"
+              action: "$.detail.eventName"
+              arn: "$.detail.userIdentity.arn"
+              loginrate: "$.detail.responseElements.ConsoleLogin"
+              mobile: "$.detail.additionalEventData.MobileVersion"
+              region: "$.detail.awsRegion"
+              sector: "$.detail.additionalEventData.LoginTo"
+              sourceip: "$.detail.sourceIPAddress"
+              time: "$.detail.eventTime"
+              user: "$.detail.userIdentity.userName"
+              userAgent: "$.detail.userAgent"
+            InputTemplate: |
+              "Aegis Secure Combat Systems has detected an sign in event."
+              "User: <user> has attempted the API call: <action>"
+              "Source IP: <sourceip>"
+              "User Agent Detected: <userAgent>"
+              "ARN: <arn>"
+              "Region: <region>"
+              "Time(UTC): <time>"
+              "MFA status <MFA>"
+              "Mobile Version: <mobile>"
+              "Sector: <sector>"
+              "Status: <loginrate>."
+          Arn: !GetAtt StandardQueue.Arn
+          Id: "OpsTopic2"
+          InputTransformer:
+            InputPathsMap:
+              MFA: "$.detail.additionalEventData.MFAUsed"
+              action: "$.detail.eventName"
+              arn: "$.detail.userIdentity.arn"
+              loginrate: "$.detail.responseElements.ConsoleLogin"
+              mobile: "$.detail.additionalEventData.MobileVersion"
+              region: "$.detail.awsRegion"
+              sector: "$.detail.additionalEventData.LoginTo"
+              sourceip: "$.detail.sourceIPAddress"
+              time: "$.detail.eventTime"
+              user: "$.detail.userIdentity.userName"
+              userAgent: "$.detail.userAgent"
+            InputTemplate: |
+              "Aegis Secure Combat Systems has detected an sign in event."
+              "User: <user> has attempted the API call: <action>"
+              "Source IP: <sourceip>"
+              "User Agent Detected: <userAgent>"
+              "ARN: <arn>"
+              "Region: <region>"
+              "Time(UTC): <time>"
+              "MFA status <MFA>"
+              "Mobile Version: <mobile>"
+              "Sector: <sector>"
+              "Status: <loginrate>."
   AegisInstanceSystems:
     Type: AWS::SNS::Topic
     Properties:
