@@ -24,7 +24,7 @@ echo "Tracer"
 echo "Imgr-C" 
 echo "Tesseract"
 echo
-read -p "Proceed? [y/n]" advance
+read -p "Proceed? [y/n] " advance
 
 if [ ! "$advance" == "y" ]; then
   echo "User cancelled install, exiting..."
@@ -69,7 +69,7 @@ FILE=urlscankey.txt
 if [ -f "$FILE" ]; then
     echo "$FILE URLSCAN Key already exist, proceeding."
 else 
-    read -p "Enter URLSCAN.IO KEY" urlkey
+    read -p "Enter URLSCAN.IO KEY: " urlkey
     echo '$urlkey' > urlscankey.txt
 fi
 
@@ -77,7 +77,7 @@ FILE=vtkey.txt
 if [ -f "$FILE" ]; then
     echo "$FILE VT Key already exist, proceeding."
 else 
-    read -p "Enter VIRUSTOTAL KEY" vtkey
+    read -p "Enter VIRUSTOTAL KEY: " vtkey
     echo '$vtkey' > vtkey.txt
 fi
 
