@@ -51,7 +51,7 @@ fi
 
 cd $HOME && mkdir scripts && cd scripts
 
-# Initialize the download the script series and make them executables.
+# Initialize the download the script series and make them executables
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/megac && chmod +x megac;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/javelin && chmod +x javelin;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/ghost && chmod +x ghost;
@@ -64,28 +64,28 @@ wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/hostc && chmo
 wget -q -N https://raw.githubusercontent.com/drampil/toy-box/main/identity.sh && chmod +x identity.sh;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/template
 
+# Check for API keys
 
-# Install Test Keys
-echo '90cb4aac-e7cf-4ce6-a646-8fd01074f9c5' > urlscankey.txt
-echo '77bf2c05f05e318259df7ef3c1a557b802c41a8bb66b30f01eb2fd395099cb0c' > vtkey.txt
+FILE=urlscankey.txt
+if [ -f "$FILE" ]; then
+    echo "$FILE URLSCAN Key already exist, proceeding."
+else 
+    read -p "Enter URLSCAN.IO KEY" urlkey
+    echo '$urlkey' > urlscankey.txt
+fi
 
-# List the scripts downloaded.
-echo "Installed or updated the following:"
-echo
-echo "1. Mega cURL"
-echo "2. Host Hunter as a Command Line Tool"
-echo "3. Javelin"
-echo "4. Ghost"
-echo "5. Warpath"
-echo "6. Aris-C"
-echo "7. Tracer"
-echo "8. Imgr-C" 
-echo "9. Tesseract as a Command Line Tool"
-echo
+FILE=vtkey.txt
+if [ -f "$FILE" ]; then
+    echo "$FILE VT Key already exist, proceeding."
+else 
+    read -p "Enter VIRUSTOTAL KEY" vtkey
+    echo '$vtkey' > vtkey.txt
+fi
 
-# Install Firewalld and Whois
-echo "Installing systools and changing permissions..."
+# Install Whois
+echo "Installing systools"
 sudo yum install whois -y
+sudo yum install netmap -y
 echo
 
 # Install new .bashrc parameters
@@ -95,9 +95,6 @@ else
         "echo 'bash identity.sh' >> .bashrc"
 fi
 
-# Display .bashrc identity
-source .bashrc
-
 # Check file integrity
 echo "Checking file integrity."
 sleep 1
@@ -105,6 +102,7 @@ sleep 1
 FILE=megac
 if [ -f "$FILE" ]; then
     echo "$FILE has been installed successfully."
+    toyArray+=(megac)
 else 
     echo "$FILE has not been installed successfully."
 fi
@@ -112,6 +110,7 @@ fi
 FILE=javelin
 if [ -f "$FILE" ]; then
     echo "$FILE has been installed successfully."
+    toyArray+=(javelin)
 else 
     echo "$FILE has not been installed successfully."
 fi
@@ -119,6 +118,7 @@ fi
 FILE=ghost
 if [ -f "$FILE" ]; then
     echo "$FILE has been installed successfully."
+    toyArray+=(ghost)
 else 
     echo "$FILE has not been installed successfully."
 fi
@@ -126,6 +126,7 @@ fi
 FILE=warpath
 if [ -f "$FILE" ]; then
     echo "$FILE has been installed successfully."
+    toyArray+=(warpath)
 else 
     echo "$FILE has not been installed successfully."
 fi
@@ -133,6 +134,7 @@ fi
 FILE=aris
 if [ -f "$FILE" ]; then
     echo "$FILE has been installed successfully."
+    toyArray+=(aris)
 else 
     echo "$FILE has not been installed successfully."
 fi
@@ -140,6 +142,7 @@ fi
 FILE=tracer
 if [ -f "$FILE" ]; then
     echo "$FILE has been installed successfully."
+    toyArray+=(tracer)
 else 
     echo "$FILE has not been installed successfully."
 fi
@@ -147,6 +150,7 @@ fi
 FILE=imgur
 if [ -f "$FILE" ]; then
     echo "$FILE has been installed successfully."
+    toyArray+=(imgur)
 else 
     echo "$FILE has not been installed successfully."
 fi
@@ -154,6 +158,7 @@ fi
 FILE=tessbeta
 if [ -f "$FILE" ]; then
     echo "$FILE has been installed successfully."
+    toyArray+=(tessbeta)
 else 
     echo "$FILE has not been installed successfully."
 fi
@@ -161,6 +166,7 @@ fi
 FILE=hostc
 if [ -f "$FILE" ]; then
     echo "$FILE has been installed successfully."
+    toyArray+=(hostc)
 else 
     echo "$FILE has not been installed successfully."
 fi
@@ -177,8 +183,10 @@ ln -s scripts/imgur imgur
 ln -s scripts/tessbeta tess
 ln -s scripts/hostc hostc
 
-# Cleanup
-mv tessbeta tess
+echo "Toytbox has been installed or updated the following to latest versions."
 
-echo "Toytbox has been installed or updated to it's latest version."
+for i in ${!toyArray[@]}; do
+  echo "Installed ${toyArray[$i]}"
+done
+
 ls -li
