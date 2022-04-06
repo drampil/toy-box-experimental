@@ -11,12 +11,11 @@ echo -e "   ██║   ██║   ██║  ╚██╔╝      ██╔═
 echo -e "   ██║   ╚██████╔╝   ██║       ██████╔╝╚██████╔╝██╔╝ ██╗"
 echo -e "   ╚═╝    ╚═════╝    ╚═╝       ╚═════╝  ╚═════╝ ╚═╝  ╚═╝"
 echo
-curl https://raw.githubusercontent.com/drampil/toy-box/main/28.txt
 
 echo "This manager will update or install the following scripts."
 echo
 echo "Mega cURL"
-echo "Host Hunter as a Command Line Tool"
+echo "Host Hunter"
 echo "Javelin"
 echo "Ghost"
 echo "Warpath"
@@ -42,6 +41,7 @@ check=$(cat /etc/group | grep wheel | cut -d ":" -f 4)
 if [[ $user = $check ]];
 then
         echo "You have root powers according to wheel, proceeding"
+        echo
 else
         echo "You don't have root power, exiting"
         exit
@@ -63,6 +63,7 @@ wget -q -N https://raw.githubusercontent.com/drampil/toy-box/main/identity.sh &&
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/template
 
 # Check for API keys
+echo
 
 FILE=urlscankey.txt
 if [ -f "$FILE" ]; then
@@ -80,10 +81,12 @@ else
     echo '$vtkey' > vtkey.txt
 fi
 
+echo
+
 # Install Whois
 echo "Installing systools"
 sudo yum install whois -y
-sudo yum install netmap -y
+sudo yum install nmap -y
 echo
 
 # Install new .bashrc parameters
@@ -99,7 +102,6 @@ sleep 1
 
 FILE=megac
 if [ -f "$FILE" ]; then
-    echo "$FILE has been installed successfully."
     toyArray+=(megac)
 else 
     echo "$FILE has not been installed successfully."
@@ -107,7 +109,6 @@ fi
 
 FILE=javelin
 if [ -f "$FILE" ]; then
-    echo "$FILE has been installed successfully."
     toyArray+=(javelin)
 else 
     echo "$FILE has not been installed successfully."
@@ -115,7 +116,6 @@ fi
 
 FILE=ghost
 if [ -f "$FILE" ]; then
-    echo "$FILE has been installed successfully."
     toyArray+=(ghost)
 else 
     echo "$FILE has not been installed successfully."
@@ -123,7 +123,6 @@ fi
 
 FILE=warpath
 if [ -f "$FILE" ]; then
-    echo "$FILE has been installed successfully."
     toyArray+=(warpath)
 else 
     echo "$FILE has not been installed successfully."
@@ -131,7 +130,6 @@ fi
 
 FILE=aris
 if [ -f "$FILE" ]; then
-    echo "$FILE has been installed successfully."
     toyArray+=(aris)
 else 
     echo "$FILE has not been installed successfully."
@@ -139,7 +137,6 @@ fi
 
 FILE=tracer
 if [ -f "$FILE" ]; then
-    echo "$FILE has been installed successfully."
     toyArray+=(tracer)
 else 
     echo "$FILE has not been installed successfully."
@@ -147,7 +144,6 @@ fi
 
 FILE=imgur
 if [ -f "$FILE" ]; then
-    echo "$FILE has been installed successfully."
     toyArray+=(imgur)
 else 
     echo "$FILE has not been installed successfully."
@@ -155,7 +151,6 @@ fi
 
 FILE=tessbeta
 if [ -f "$FILE" ]; then
-    echo "$FILE has been installed successfully."
     toyArray+=(tessbeta)
 else 
     echo "$FILE has not been installed successfully."
@@ -163,11 +158,12 @@ fi
 
 FILE=hostc
 if [ -f "$FILE" ]; then
-    echo "$FILE has been installed successfully."
     toyArray+=(hostc)
 else 
     echo "$FILE has not been installed successfully."
 fi
+
+echo
 
 # Create symbolic links to root directory
 cd $HOME
@@ -182,9 +178,10 @@ ln -s scripts/tessbeta tess
 ln -s scripts/hostc hostc
 
 echo "Toytbox has been installed or updated the following to latest versions."
+echo
 
 for i in ${!toyArray[@]}; do
-  echo "Installed ${toyArray[$i]}"
+  echo "Installed ${toyArray[$i]} Successfully"
 done
 
-ls -li
+
