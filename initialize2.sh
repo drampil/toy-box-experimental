@@ -169,7 +169,7 @@ echo
 cd $HOME
 
 for i in ${!toyArray[@]}; do
-  ln -s scripts/${toyArray[$i]} ${toyArray[$i]}"
+  ln -s scripts/${toyArray[$i]} ${toyArray[$i]}
 done
 
 echo "Toytbox has been installed or updated the following to latest versions."
