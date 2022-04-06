@@ -180,3 +180,5 @@ for i in ${!toyArray[@]}; do
 done
 
 echo "Install Complete, goodbye!"
+
+source .bashrc 
