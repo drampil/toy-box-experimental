@@ -34,9 +34,20 @@ if [ ! "$advance" == "y" ]; then
 fi
 
 echo
+
+# Check for root access
 echo "Checking for root powers."
 sleep 1
-
+user=$(whoami)
+check=$(cat /etc/group | grep wheel | cut -d ":" -f 4)
+if [[ $user = $check ]];
+then
+        echo "You have root powers according to wheel, proceeding"
+else
+        echo "You don't have root power, exiting"
+        exit
+fi
+}
 
 cd $HOME && mkdir scripts && cd scripts
 
