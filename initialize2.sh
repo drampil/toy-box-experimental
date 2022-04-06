@@ -46,7 +46,6 @@ else
         echo "You don't have root power, exiting"
         exit
 fi
-}
 
 cd $HOME && mkdir scripts && cd scripts
 
