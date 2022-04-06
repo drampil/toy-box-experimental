@@ -184,4 +184,4 @@ for i in ${!toyArray[@]}; do
   echo "Installed ${toyArray[$i]} Successfully"
 done
 
-ls
+ll
