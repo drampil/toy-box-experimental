@@ -167,15 +167,10 @@ echo
 
 # Create symbolic links to root directory
 cd $HOME
-ln -s scripts/megac megac
-ln -s scripts/javelin javelin
-ln -s scripts/ghost ghost
-ln -s scripts/warpath warpath
-ln -s scripts/aris aris
-ln -s scripts/tracer tracer
-ln -s scripts/imgur imgur
-ln -s scripts/tessbeta tess
-ln -s scripts/hostc hostc
+
+for i in ${!toyArray[@]}; do
+  ln -s scripts/${toyArray[$i]} ${toyArray[$i]}"
+done
 
 echo "Toytbox has been installed or updated the following to latest versions."
 echo
