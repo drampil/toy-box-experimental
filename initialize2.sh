@@ -22,7 +22,7 @@ echo "Warpath"
 echo "Aris-C"
 echo "Tracer"
 echo "Imgr-C" 
-echo "Tesseract as a Command Line Tool"
+echo "Tesseract"
 echo
 read -p "Proceed? [y/n]" advance
 
@@ -179,4 +179,4 @@ for i in ${!toyArray[@]}; do
   echo "Installed ${toyArray[$i]} Successfully"
 done
 
-ll
+echo "Install Complete, goodbye!"
