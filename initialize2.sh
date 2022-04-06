@@ -14,7 +14,6 @@ echo
 curl https://raw.githubusercontent.com/drampil/toy-box/main/28.txt
 
 echo "This manager will update or install the following scripts."
-echo "Installed or updated the following:"
 echo
 echo "Mega cURL"
 echo "Host Hunter as a Command Line Tool"
