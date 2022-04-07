@@ -1,3 +1,14 @@
+#!/bin/bash
+
+echo
+echo -e "████████╗ ██████╗ ██╗   ██╗    ██████╗  ██████╗ ██╗  ██╗"
+echo -e "╚══██╔══╝██╔═══██╗╚██╗ ██╔╝    ██╔══██╗██╔═══██╗╚██╗██╔╝"
+echo -e "   ██║   ██║   ██║ ╚████╔╝     ██████╔╝██║   ██║ ╚███╔╝ "
+echo -e "   ██║   ██║   ██║  ╚██╔╝      ██╔══██╗██║   ██║ ██╔██╗ "
+echo -e "   ██║   ╚██████╔╝   ██║       ██████╔╝╚██████╔╝██╔╝ ██╗"
+echo -e "   ╚═╝    ╚═════╝    ╚═╝       ╚═════╝  ╚═════╝ ╚═╝  ╚═╝"
+echo
+
 if [ ! -d toy-box-experimental ]
 then
         git clone https://github.com/drampil/toy-box-experimental
@@ -11,7 +22,7 @@ toyarr=(*.sh)
 
 for i in ${toyarr[@]}
 do
-        echo $i && chmod +x $i
+        echo "Installed: " $i && chmod +x $i
 done
 
 cd ../
@@ -19,3 +30,4 @@ cd ../
 for i in ${!toyarr[@]}; do
   ln -sf toy-box-experimental/${toyarr[$i]} ${toyarr[$i]}
 done
+
