@@ -8,6 +8,8 @@ echo -e "   ██║   ██║   ██║  ╚██╔╝      ██╔═
 echo -e "   ██║   ╚██████╔╝   ██║       ██████╔╝╚██████╔╝██╔╝ ██╗"
 echo -e "   ╚═╝    ╚═════╝    ╚═╝       ╚═════╝  ╚═════╝ ╚═╝  ╚═╝"
 echo "Install Wizard"
+lastUpdate=$(curl -s "https://api.github.com/repos/drampil/toy-box-experimental/commits" | grep -w -m 1 "date" | awk '{print $2}' | sed 's/"//g;')
+echo "Latest Update: " $lastUpdate
 
 # Update Whois and Nmap
 sudo yum install whois -y
